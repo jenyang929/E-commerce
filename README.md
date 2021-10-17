@@ -1,3 +1,33 @@
+# Ecommerce
+
+- Given a list of brands, user can select multiple checkboxes and "purchase" them together.
+- If there are no brands selected, the user will be prompted that nothing is selected.
+- Once brands are purchased, user can see past purchased and are grouped as a receipt
+- User can purchase multiple brands multiple times.
+
+# Quick Start
+
+To install the app you can run `yarn` or `npm install`
+
+```
+yarn
+
+// or
+
+npm install
+
+```
+
+To run the app run `yarn start` or `npm start`. The app will be at [http://localhost:3000](http://localhost:3000)
+
+```
+yarn start
+
+// or
+
+npm start
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

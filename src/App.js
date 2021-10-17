@@ -99,7 +99,7 @@ class App extends React.Component {
                     name={brand.name}
                     value={isChecked[idx]}
                     checked={isChecked[idx]}
-                    onClick={() => handleSelect(idx)}
+                    onChange={() => handleSelect(idx)}
                   />
                   <label>{brand.name}</label>
                 </div>
@@ -109,7 +109,7 @@ class App extends React.Component {
           </div>
           <div className="column">
             <header>Purchased!</header>
-            <div>{purchased.length && <Receipt purchased={purchased} />}</div>
+            <div>{!!purchased.length && <Receipt purchased={purchased} />}</div>
           </div>
           <div className="column">
             <header>Comments!</header>
