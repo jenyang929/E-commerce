@@ -15,7 +15,6 @@ yarn
 // or
 
 npm install
-
 ```
 
 To run the app run `yarn start` or `npm start`. The app will be at [http://localhost:3000](http://localhost:3000)
@@ -26,6 +25,15 @@ yarn start
 // or
 
 npm start
+```
+
+To run the tests, 
+```
+yarn test 
+
+// or 
+
+npm test
 ```
 
 # Getting Started with Create React App
