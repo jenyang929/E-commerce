@@ -17,7 +17,7 @@ class App extends React.Component {
     ];
     this.state = {
       purchased: [],
-      isChecked: new Array(this.allBrands.length).fill(false),
+      selectedBrands: new Array(this.allBrands.length).fill(false),
       comment: "",
     };
   }
@@ -25,7 +25,7 @@ class App extends React.Component {
   // toggles selected brands
   handleSelect = (brandIdx) => {
     this.setState({
-      isChecked: this.state.isChecked.map((el, idx) => {
+      selectedBrands: this.state.selectedBrands.map((el, idx) => {
         if (idx === brandIdx) {
           return (el = !el);
         }
@@ -46,7 +46,7 @@ class App extends React.Component {
     });
 
     this.setState({ purchased: [...this.state.purchased, [...hash]] });
-    this.resetIsChecked();
+    this.resetSelectedBrands();
   };
 
   // sets state for any errors or additional comments
@@ -60,9 +60,9 @@ class App extends React.Component {
 
   // checks for any checked brands to be purchased
   submitPurchase = () => {
-    const { isChecked } = this.state;
+    const { selectedBrands } = this.state;
     const purchasing = [];
-    isChecked.forEach((el, idx) => {
+    selectedBrands.forEach((el, idx) => {
       if (el === true) {
         purchasing.push(this.allBrands[idx]);
       }
@@ -76,13 +76,15 @@ class App extends React.Component {
   };
 
   // Clears out and resets checkbox after purchasing
-  resetIsChecked = () => {
-    this.setState({ isChecked: new Array(this.allBrands.length).fill(false) });
+  resetSelectedBrands = () => {
+    this.setState({
+      selectedBrands: new Array(this.allBrands.length).fill(false),
+    });
   };
 
   render() {
     const { handleSelect, submitPurchase } = this;
-    const { isChecked, purchased, comment } = this.state;
+    const { selectedBrands, purchased, comment } = this.state;
 
     return (
       <div className="App">
@@ -97,8 +99,8 @@ class App extends React.Component {
                     type="checkbox"
                     id={brand.id}
                     name={brand.name}
-                    value={isChecked[idx]}
-                    checked={isChecked[idx]}
+                    value={selectedBrands[idx]}
+                    checked={selectedBrands[idx]}
                     onChange={() => handleSelect(idx)}
                   />
                   <label>{brand.name}</label>
