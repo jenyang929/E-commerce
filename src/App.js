@@ -1,30 +1,29 @@
-import React from 'react';
-import './App.css';
-import Receipt from './Receipt';
-
-const allBrands = [
-  { id: 1, name: 'West Elm' },
-  { id: 2, name: 'Restoration Hardware' },
-  { id: 3, name: 'CB2' },
-  { id: 4, name: 'JoyBird' },
-  { id: 5, name: 'Article' },
-  { id: 6, name: 'Design Within Reach' },
-  { id: 7, name: 'Pottery Barn' },
-  { id: 8, name: 'Ikea' },
-];
+import React from "react";
+import "./App.css";
+import Receipt from "./Receipt";
 
 class App extends React.Component {
   constructor() {
     super();
+    this.allBrands = [
+      { id: 1, name: "West Elm" },
+      { id: 2, name: "Restoration Hardware" },
+      { id: 3, name: "CB2" },
+      { id: 4, name: "JoyBird" },
+      { id: 5, name: "Article" },
+      { id: 6, name: "Design Within Reach" },
+      { id: 7, name: "Pottery Barn" },
+      { id: 8, name: "Ikea" },
+    ];
     this.state = {
       purchased: [],
-      isChecked: new Array(allBrands.length).fill(false),
-      comment: '',
+      isChecked: new Array(this.allBrands.length).fill(false),
+      comment: "",
     };
   }
 
   // toggles selected brands
-  handleSelect = brandIdx => {
+  handleSelect = (brandIdx) => {
     this.setState({
       isChecked: this.state.isChecked.map((el, idx) => {
         if (idx === brandIdx) {
@@ -36,13 +35,13 @@ class App extends React.Component {
   };
 
   // adds checked items to purchased
-  addToPurchased = purchasing => {
+  addToPurchased = (purchasing) => {
     if (this.state.comment && purchasing.length) {
       this.setComment(false);
     }
 
     const hash = [];
-    purchasing.map(brand => {
+    purchasing.forEach((brand) => {
       return hash.push(brand.name);
     });
 
@@ -51,11 +50,11 @@ class App extends React.Component {
   };
 
   // sets state for any errors or additional comments
-  setComment = bool => {
+  setComment = (bool) => {
     if (bool === true) {
-      this.setState({ comment: 'Oh no! there is nothing to be purchased!' });
+      this.setState({ comment: "Oh no! there is nothing to be purchased!" });
     } else {
-      this.setState({ comment: '' });
+      this.setState({ comment: "" });
     }
   };
 
@@ -65,7 +64,7 @@ class App extends React.Component {
     const purchasing = [];
     isChecked.forEach((el, idx) => {
       if (el === true) {
-        purchasing.push(allBrands[idx]);
+        purchasing.push(this.allBrands[idx]);
       }
     });
 
@@ -78,7 +77,7 @@ class App extends React.Component {
 
   // Clears out and resets checkbox after purchasing
   resetIsChecked = () => {
-    this.setState({ isChecked: new Array(allBrands.length).fill(false) });
+    this.setState({ isChecked: new Array(this.allBrands.length).fill(false) });
   };
 
   render() {
@@ -91,9 +90,9 @@ class App extends React.Component {
         <div className="column-container">
           <div className="column">
             <h2>Brands</h2>
-            {allBrands?.map((brand, idx) => {
+            {this.allBrands.map((brand, idx) => {
               return (
-                <div className="inputs">
+                <div key={idx}>
                   <input
                     type="checkbox"
                     id={brand.id}
@@ -110,7 +109,7 @@ class App extends React.Component {
           </div>
           <div className="column">
             <header>Purchased!</header>
-            <div>{purchased && <Receipt purchased={purchased} />}</div>
+            <div>{purchased.length && <Receipt purchased={purchased} />}</div>
           </div>
           <div className="column">
             <header>Comments!</header>
